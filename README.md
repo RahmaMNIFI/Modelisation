@@ -24,7 +24,7 @@ La première étape consiste à segmenter les parties de tissu des images WSI à
 python create_patches_fp.py --source "/chemin/vers/votre_dossier_source/" --save_dir "/chemin/vers/votre_dossier_de_sauvegarde/" --patch_size 256 --seg --patch --stitch
 ```
 ```bash
-python create_patches_fp.py --source "/chemin/vers/votre_dossier_source/" --save_dir "/chemin/vers/votre_dossier_de_sauvegarde/" --patch_size 256 --seg --patch --stitch
+python extract.py --wsi_csv "/chemin/vers/votre_dossier_de_sauvegarde/process_list_autogen.csv" --wsi_path "/chemin/vers/votre_dossier_source/" --patches_path "/chemin/vers/votre_dossier_de_sauvegarde/patches/" --output_path "/chemin/vers/votre_dossier_de_sauvegarde/features/"
 ```
 
 ### Étape 2 : Extraction des Caractéristiques avec ResNet-50
