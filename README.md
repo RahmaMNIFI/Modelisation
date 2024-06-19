@@ -51,7 +51,7 @@ python train_.py --wsi_labels_path "/content/drive/MyDrive/data/label_test1.csv"
 python test.py --wsi_labels_path "/content/drive/MyDrive/data/label_test1.csv" --features_path "/content/drive/MyDrive/features/test/" --labels_path "/content/drive/MyDrive/data/reference.csv" --model_state_dict_path "/content/drive/MyDrive/CLAM/weights_25epochs.pt"
 ```
 Ce projet vise à automatiser et améliorer la précision de la détection du cancer du sein à partir de WSI en utilisant des techniques avancées d'apprentissage profond et d'attention, spécifiquement adaptées aux besoins de la pathologie computationnelle.
-Prérequis
+### Prérequis
 
 Pour exécuter ce projet, assurez-vous d'avoir Python 3.10 installé sur votre système. Utilisez ensuite le fichier requirements.txt pour installer toutes les dépendances nécessaires. Voici la commande à exécuter :
 ```bash
