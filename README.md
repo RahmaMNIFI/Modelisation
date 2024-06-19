@@ -22,16 +22,18 @@ La première étape consiste à segmenter les parties de tissu des images WSI à
 
 ```bash
 python create_patches_fp.py --source "/chemin/vers/votre_dossier_source/" --save_dir "/chemin/vers/votre_dossier_de_sauvegarde/" --patch_size 256 --seg --patch --stitch
-
+```
+```bash
 python create_patches_fp.py --source "/chemin/vers/votre_dossier_source/" --save_dir "/chemin/vers/votre_dossier_de_sauvegarde/" --patch_size 256 --seg --patch --stitch
+```
 
-### Étape 1 : Segmentation et Extraction des PatchesÉtape 2 : Extraction des Caractéristiques avec ResNet-50
+### Étape 2 : Extraction des Caractéristiques avec ResNet-50
 
 Les caractéristiques des patches de chaque WSI sont extraites à l'aide d'une version simplifiée du modèle ResNet-50, pré-entraînée sur ImageNet. Cette étape est critique et prend du temps en raison de l'extraction de caractéristiques pour chaque patch.
 
 Commandes pour extraire les caractéristiques :
         python extract.py --wsi_csv "/chemin/vers/votre_dossier_de_sauvegarde/process_list_autogen.csv" --wsi_path "/chemin/vers/votre_dossier_source/" --patches_path "/chemin/vers/votre_dossier_de_sauvegarde/patches/" --output_path "/chemin        /vers/votre_dossier_de_sauvegarde/features/"
-Étape 3 : Modèle CLAM
+### Étape 3 : Modèle CLAM
 
 Dans la troisième et dernière étape, les caractéristiques extraites sont utilisées dans le modèle CLAM. Ce modèle calcule les scores d'attention à partir des caractéristiques en passant à travers une couche d'attention. Ensuite, il utilise des classificateurs simples pour calculer deux types de pertes :
 
@@ -41,16 +43,21 @@ Calcul des Pertes Instance : Les pertes d'instance sont calculées pour entraîn
 À la fin, les deux pertes sont combinées dans une somme pondérée pour obtenir la perte finale. Les pertes d'instance ne sont utilisées que pendant l'entraînement, tandis que la perte globale du lot est utilisée pour la rétropropagation et l'évaluation.
 
 Commandes pour entraîner et tester le modèle :
-
+```bash
 python train_.py --wsi_labels_path "/content/drive/MyDrive/data/label_test1.csv" --features_path "/content/drive/MyDrive/features/test/" --model_state_dict_path "/content/drive/MyDrive/CLAM/weights_25epochs.pt" --num_epochs 50 --batch_size 1 --bag_weight 0.7
+```
+```bash
 
 python test.py --wsi_labels_path "/content/drive/MyDrive/data/label_test1.csv" --features_path "/content/drive/MyDrive/features/test/" --labels_path "/content/drive/MyDrive/data/reference.csv" --model_state_dict_path "/content/drive/MyDrive/CLAM/weights_25epochs.pt"
+```
 Ce projet vise à automatiser et améliorer la précision de la détection du cancer du sein à partir de WSI en utilisant des techniques avancées d'apprentissage profond et d'attention, spécifiquement adaptées aux besoins de la pathologie computationnelle.
 Prérequis
 
 Pour exécuter ce projet, assurez-vous d'avoir Python 3.10 installé sur votre système. Utilisez ensuite le fichier requirements.txt pour installer toutes les dépendances nécessaires. Voici la commande à exécuter :
+```bash
 pip install -r requirements.txt
-Références
+```
+### Références
 
     Camelyon16 Grand Challenge
     Lu et al., Data-efficient and weakly supervised computational pathology on whole-slide images. Nat Biomed Eng 5, 555–570 (2021)
