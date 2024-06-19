@@ -59,6 +59,10 @@ pip install -r requirements.txt
 ```
 ### Références
 
-    Camelyon16 Grand Challenge
+    
     Lu et al., Data-efficient and weakly supervised computational pathology on whole-slide images. Nat Biomed Eng 5, 555–570 (2021)
-    CLAM GitHub Repository
+    
+    https://camelyon16.grand-challenge.org/
+    
+    https://github.com/mahmoodlab/CLAM/tree/master
+
