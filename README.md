@@ -21,13 +21,13 @@ python create_patches_fp.py --source "/chemin/vers/votre_dossier_source/" --save
 Les caractéristiques des patches de chaque WSI sont extraites à l'aide d'une version simplifiée du modèle ResNet-50, pré-entraînée sur ImageNet. Cette étape est critique et prend du temps en raison de l'extraction de caractéristiques pour chaque patch.
 
 Commandes pour extraire les caractéristiques :
-python extract.py --wsi_csv "/chemin/vers/votre_dossier_de_sauvegarde/process_list_autogen.csv" --wsi_path "/chemin/vers/votre_dossier_source/" --patches_path "/chemin/vers/votre_dossier_de_sauvegarde/patches/" --output_path "/chemin/vers/votre_dossier_de_sauvegarde/features/"
+        python extract.py --wsi_csv "/chemin/vers/votre_dossier_de_sauvegarde/process_list_autogen.csv" --wsi_path "/chemin/vers/votre_dossier_source/" --patches_path "/chemin/vers/votre_dossier_de_sauvegarde/patches/" --output_path "/chemin        /vers/votre_dossier_de_sauvegarde/features/"
 Étape 3 : Modèle CLAM
 
 Dans la troisième et dernière étape, les caractéristiques extraites sont utilisées dans le modèle CLAM. Ce modèle calcule les scores d'attention à partir des caractéristiques en passant à travers une couche d'attention. Ensuite, il utilise des classificateurs simples pour calculer deux types de pertes :
 
-    Calcul des Scores d'Attention : Cette étape vise à effectuer un pooling intelligent des scores d'attention, optimisant la détection des tumeurs plutôt qu'un simple pooling maximal.
-    Calcul des Pertes Instance : Les pertes d'instance sont calculées pour entraîner le modèle à distinguer les instances pertinentes (tumeurs) des non-pertinentes.
+Calcul des Scores d'Attention : Cette étape vise à effectuer un pooling intelligent des scores d'attention, optimisant la détection des tumeurs plutôt qu'un simple pooling maximal.
+Calcul des Pertes Instance : Les pertes d'instance sont calculées pour entraîner le modèle à distinguer les instances pertinentes (tumeurs) des non-pertinentes.
 
 À la fin, les deux pertes sont combinées dans une somme pondérée pour obtenir la perte finale. Les pertes d'instance ne sont utilisées que pendant l'entraînement, tandis que la perte globale du lot est utilisée pour la rétropropagation et l'évaluation.
 
